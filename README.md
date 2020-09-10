@@ -16,8 +16,20 @@ yarn build
 ```
 
 ### Lints and fixes files
+
+#### Default lint
 ```
 yarn lint
+```
+
+#### Lint for development on Windows
+```
+yarn lintDevWin
+```
+
+#### Lint for production on Windows
+```
+yarn lintProdWin
 ```
 
 ### Customize configuration
