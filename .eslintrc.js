@@ -17,5 +17,6 @@ module.exports = {
     'no-undef': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     quotes: process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     'comma-dangle': process.env.NODE_ENV === 'development' ? ['warn', 'always-multiline'] : ['error', 'always-multiline'],
+    semi: process.env.NODE_ENV === 'development' ? 'warn' : 'error',
   },
 }

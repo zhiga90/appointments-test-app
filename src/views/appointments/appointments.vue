@@ -1,5 +1,5 @@
 <template lang="pug">
- .appointments appointments
+  .appointments appointments
 </template>
 
 <script>
@@ -9,5 +9,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.appointments
+// .appointments
 </style>

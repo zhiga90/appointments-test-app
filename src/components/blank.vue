@@ -9,5 +9,5 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.blank
+// .blank
 </style>
