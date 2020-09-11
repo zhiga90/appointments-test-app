@@ -1,12 +1,17 @@
 <template lang="pug">
 .layout-default.flex-column
-  .main-container
+  .header.flex-thin
+    .logo-block
+      logo
+  .main-container.flex-stretch
     slot
 </template>
 
 <script>
+import logo from '@/components/logo'
 export default {
   name: 'layout-default',
+  components: { logo },
 }
 </script>
 
@@ -20,4 +25,8 @@ body
   padding: 60px 20px
   @media (max-width: $to-sm)
     padding: 20px
+  .logo-block
+    padding-bottom: 40px
+    @media (max-width: $to-sm)
+      padding-bottom: 20px
 </style>

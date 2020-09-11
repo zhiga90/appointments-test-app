@@ -20,5 +20,6 @@ module.exports = {
     semi: process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     'space-before-function-paren': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     'object-curly-spacing': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
+    'no-multiple-empty-lines': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
   },
 }
