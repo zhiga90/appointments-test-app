@@ -7,7 +7,7 @@
       :rules="rules"
     )
       el-form-item(label="Date" prop="date" required)
-        el-date-picker(v-model="form.date" type="date" placeholder="Pick a date" style="width: 100%;")
+        el-date-picker(v-model="form.date" type="datetime" placeholder="Pick a date" style="width: 100%;")
       el-form-item(label="Full name" prop="name")
         el-input(v-model="form.name")
       el-form-item(label="Note" prop="note")

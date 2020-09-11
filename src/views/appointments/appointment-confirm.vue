@@ -3,7 +3,7 @@
     .confirms
       .confirm(v-for="item in confirm")
         .confirm-label {{item.label}}:
-        .confirm-value {{newAppointment[item.value] || 'No data'}}
+        .confirm-value {{getValue(item.key)}}
     el-button(@click="back") Back
     el-button(type="primary" @click="save") Confirm and save
 </template>
@@ -15,9 +15,9 @@ export default {
 
   data: () => ({
     confirm: [
-      { label: 'Date', value: 'date' },
-      { label: 'Full name', value: 'name' },
-      { label: 'Note', value: 'note' },
+      { label: 'Date', key: 'date' },
+      { label: 'Full name', key: 'name' },
+      { label: 'Note', key: 'note' },
     ],
     out: false,
   }),
@@ -32,6 +32,15 @@ export default {
 
   methods: {
     ...mapActions('appointments', ['addAppointment']),
+    getValue(key) {
+      let value = null
+      if (key === 'date') {
+        value = this.$date.fromMillis(this.newAppointment[key]).toLocaleString(this.$date.DATETIME_MED)
+      } else {
+        value = this.newAppointment[key]
+      }
+      return value || 'No data'
+    },
     checkData () {
       if (this.noConfirm && !this.out) this.back()
     },

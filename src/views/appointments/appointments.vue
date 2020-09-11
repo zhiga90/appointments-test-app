@@ -22,7 +22,7 @@
             .appointment-before
               el-checkbox(v-model="appointment.isHappen").appointment-toggle
             .appointment-body
-              .appointment-date {{appointment.date}}
+              .appointment-date {{$date.fromMillis(appointment.date).toLocaleString($date.DATETIME_SHORT)}}
               .appointment-name {{appointment.name}}
             .appointment-after
               el-button.appointment-remove(icon="el-icon-delete" circle, @click="remove(appointment, index)")
@@ -91,7 +91,7 @@ export default {
       @media (max-width: $to-md)
         flex-wrap: wrap
     &-date
-      flex: 0 0 0
+      flex: 0 0 10
       padding-right: 20px
       color: $--color-primary
       font-weight: bold
