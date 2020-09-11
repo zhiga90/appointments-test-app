@@ -1,15 +1,31 @@
 <template lang="pug">
   .appointments
-    el-card.list
-      .list-item(v-for="appointment in appointments")
-        .appointment
-          .appointment-before
-            el-checkbox.appointment-toggle
-          .appointment-body
-            .appointment-date {{appointment.date}}
-            .appointment-title {{appointment.title}}
-          .appointment-after
-            el-button.appointment-remove(icon="el-icon-delete" circle)
+    el-card.no-data(v-if="isNoAppointments")
+      .no-data-title
+        span Your appointments list is empty.
+        br
+        span You can relax and wait for
+      .no-data-action
+        el-button(type="primary" icon="el-icon-time") New appointment
+      .no-data-image
+        img(src="@/assets/relax.png")
+    el-card(v-else)
+      .header
+        .header-title
+          span Your appointments list
+        .header-right
+          el-button.header-button(icon="el-icon-plus" circle)
+
+      .list
+        .list-item(v-for="appointment in appointments")
+          .appointment
+            .appointment-before
+              el-checkbox(v-model="appointment.isHappen").appointment-toggle
+            .appointment-body
+              .appointment-date {{appointment.date}}
+              .appointment-title {{appointment.title}}
+            .appointment-after
+              el-button.appointment-remove(icon="el-icon-delete" circle)
 </template>
 
 <script>
@@ -17,16 +33,37 @@ export default {
   name: 'appointments',
 
   data: () => ({
-    appointments: [
-      { title: 'Apointment 1', date: '11.09.2020' },
-      { title: 'Apointment 2', date: '12.09.2020' },
-    ],
+    appointments: [],
   }),
+  computed: {
+    isNoAppointments () { return !this.appointments.length },
+  },
 }
 </script>
 
 <style lang="sass" scoped>
 .appointments
+  .no-data
+    text-align: center
+    &-title
+      padding-top: 10px
+      color: $black2
+      padding-bottom: 30px
+    img
+      padding-top: 20px
+      width: 100%
+      max-width: 400px
+  .header
+    display: flex
+    align-items: center
+    padding: 0 20px 20px 20px
+    border-bottom: solid 1px $gray2
+    margin: 0 -20px 20px -20px
+    &-title
+      flex: 1 0 0
+    &-right
+      flex: 0 0 0
+
   .list
     .list-item
       padding-bottom: 20px
