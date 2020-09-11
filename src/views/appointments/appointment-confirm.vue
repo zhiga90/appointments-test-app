@@ -32,7 +32,7 @@ export default {
 
   methods: {
     ...mapActions('appointments', ['addAppointment']),
-    getValue(key) {
+    getValue (key) {
       let value = null
       if (key === 'date') {
         value = this.$date.fromMillis(this.newAppointment[key]).toLocaleString(this.$date.DATETIME_MED)

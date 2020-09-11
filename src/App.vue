@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'app',
   components: {
@@ -12,6 +12,12 @@ export default {
   },
   computed: {
     ...mapGetters('layout', ['layout']),
+  },
+  mounted () {
+    this.getData()
+  },
+  methods: {
+    ...mapActions('appointments', ['getData']),
   },
 }
 </script>

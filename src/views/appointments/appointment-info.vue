@@ -7,18 +7,18 @@
       :rules="rules"
     )
       el-form-item(label="Date" prop="date" required)
-        el-date-picker(v-model="form.date" type="datetime" placeholder="Pick a date" style="width: 100%;")
+        el-date-picker(v-model="form.date" type="datetime" value-format="timestamp" placeholder="Pick a date" style="width: 100%;" @change="syncData")
       el-form-item(label="Full name" prop="name")
-        el-input(v-model="form.name")
+        el-input(v-model="form.name" @change="syncData")
       el-form-item(label="Note" prop="note")
-        el-input(v-model="form.note" type="textarea")
+        el-input(v-model="form.note" type="textarea" @change="syncData")
       el-form-item
         el-button(type="primary" @click="submitForm") Next
         el-button(@click="resetForm") Reset
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'appointment-info',
 
@@ -51,6 +51,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('appointments', ['syncData']),
     async submitForm () {
       const isValid = await this.$refs.form.validate()
       if (!isValid) return
