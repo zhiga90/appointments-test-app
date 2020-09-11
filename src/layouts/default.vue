@@ -15,7 +15,7 @@ html,
 body
   height: 100%
 .layout-default
-  max-width: 1200px
+  max-width: 800px
   margin: 0 auto
   padding: 60px 20px
   @media (max-width: $to-sm)

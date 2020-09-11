@@ -19,5 +19,6 @@ module.exports = {
     'comma-dangle': process.env.NODE_ENV === 'development' ? ['warn', 'always-multiline'] : ['error', 'always-multiline'],
     semi: process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     'space-before-function-paren': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
+    'object-curly-spacing': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
   },
 }

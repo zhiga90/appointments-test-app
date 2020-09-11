@@ -16,7 +16,7 @@ import {
   // Radio,
   // RadioGroup,
   // RadioButton,
-  // Checkbox,
+  Checkbox,
   // CheckboxButton,
   // CheckboxGroup,
   // Switch,
@@ -68,7 +68,7 @@ import {
   // Timeline,
   // TimelineItem,
   // Link,
-  // Divider,
+  Divider,
   // Image,
   // Calendar,
   // Backtop,
@@ -99,7 +99,7 @@ Vue.use(Input)
 // Vue.use(Radio);
 // Vue.use(RadioGroup);
 // Vue.use(RadioButton);
-// Vue.use(Checkbox);
+Vue.use(Checkbox)
 // Vue.use(CheckboxButton);
 // Vue.use(CheckboxGroup);
 // Vue.use(Switch);
@@ -151,7 +151,7 @@ Vue.use(Card)
 // Vue.use(Timeline);
 // Vue.use(TimelineItem);
 // Vue.use(Link);
-// Vue.use(Divider);
+Vue.use(Divider)
 // Vue.use(Image);
 // Vue.use(Calendar);
 // Vue.use(Backtop);
