@@ -14,6 +14,27 @@ const routes = [
     name: 'appointments',
     component: () => import('@/views/appointments/appointments.vue'),
   },
+  {
+    path: '/appointments/create',
+    component: () => import('@/views/appointments/appointment-create.vue'),
+    children: [
+      {
+        path: '',
+        name: 'appointment-create',
+        redirect: 'info',
+      },
+      {
+        path: 'info',
+        name: 'appointment-info',
+        component: () => import('@/views/appointments/appointment-info.vue'),
+      },
+      {
+        path: 'confirm',
+        name: 'appointment-confirm',
+        component: () => import('@/views/appointments/appointment-confirm.vue'),
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({

@@ -1,20 +1,20 @@
 <template lang="pug">
   .appointments
-    el-card.no-data(v-if="isNoAppointments")
+    el-card.Card.no-data(v-if="isNoAppointments")
       .no-data-title
         span Your appointments list is empty.
         br
         span You can relax and wait for
       .no-data-action
-        el-button(type="primary" icon="el-icon-time") New appointment
+        el-button(type="primary" icon="el-icon-time" @click="$router.push('/appointments/create')") New appointment
       .no-data-image
         img(src="@/assets/relax.png")
-    el-card(v-else)
-      .header
+    el-card.Card(v-else)
+      .header.header-bordered
         .header-title
           span Your appointments list
         .header-right
-          el-button.header-button(icon="el-icon-plus" circle)
+          el-button.header-button(icon="el-icon-plus" circle @click="$router.push('/appointments/create')")
 
       .list
         .list-item(v-for="appointment in appointments")
@@ -23,7 +23,7 @@
               el-checkbox(v-model="appointment.isHappen").appointment-toggle
             .appointment-body
               .appointment-date {{appointment.date}}
-              .appointment-title {{appointment.title}}
+              .appointment-name {{appointment.name}}
             .appointment-after
               el-button.appointment-remove(icon="el-icon-delete" circle)
 </template>
@@ -53,16 +53,6 @@ export default {
       padding-top: 20px
       width: 100%
       max-width: 400px
-  .header
-    display: flex
-    align-items: center
-    padding: 0 20px 20px 20px
-    border-bottom: solid 1px $gray2
-    margin: 0 -20px 20px -20px
-    &-title
-      flex: 1 0 0
-    &-right
-      flex: 0 0 0
 
   .list
     .list-item
@@ -91,7 +81,7 @@ export default {
         flex: 1 0 auto
         padding-right: 0px
         padding-bottom: 10px
-    &-title
+    &-name
       flex: 1 0 0
       @media (max-width: $to-md)
         flex: 1 0 auto
