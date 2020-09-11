@@ -13,11 +13,13 @@
               :key="tab.name"
               :label="tab.label"
               :name="tab.name"
+              :disabled="noConfirm && tab.name === 'appointment-confirm'"
             )
       router-view
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'appointment-create',
 
@@ -29,6 +31,7 @@ export default {
   }),
 
   computed: {
+    ...mapGetters('appointments', ['noConfirm']),
     activeTab: {
       get () { return this.$route.name },
       set (tabName) {

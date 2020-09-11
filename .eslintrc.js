@@ -23,5 +23,8 @@ module.exports = {
     'no-multiple-empty-lines': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     'block-spacing': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
     'no-useless-return': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
+    'space-in-parens': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
+    'space-before-blocks': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
+    'no-trailing-spaces': process.env.NODE_ENV === 'development' ? 'warn' : 'error',
   },
 }

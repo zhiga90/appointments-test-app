@@ -17,7 +17,7 @@
           el-button.header-button(icon="el-icon-plus" circle @click="$router.push('/appointments/create')")
 
       .list
-        .list-item(v-for="appointment in appointments")
+        .list-item(v-for="(appointment, index) in list")
           .appointment
             .appointment-before
               el-checkbox(v-model="appointment.isHappen").appointment-toggle
@@ -25,18 +25,35 @@
               .appointment-date {{appointment.date}}
               .appointment-name {{appointment.name}}
             .appointment-after
-              el-button.appointment-remove(icon="el-icon-delete" circle)
+              el-button.appointment-remove(icon="el-icon-delete" circle, @click="remove(appointment, index)")
+          .appointment-note {{appointment.note}}
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'appointments',
 
-  data: () => ({
-    appointments: [],
-  }),
+  data: () => ({}),
+
   computed: {
-    isNoAppointments () { return !this.appointments.length },
+    ...mapGetters('appointments', ['list']),
+    isNoAppointments () { return !this.list.length },
+  },
+
+  methods: {
+    ...mapActions('appointments', ['removeAppointment']),
+    remove (appointment, index) {
+      this.$confirm(
+        `${appointment.date} | ${appointment.name}`,
+        'Delete this appointment?',
+      )
+        .then(() => {
+          this.removeAppointment(index)
+          this.$notify.warning({ title: 'Deleted' })
+        })
+        .catch(() => {})
+    },
   },
 }
 </script>
@@ -62,6 +79,7 @@ export default {
   .appointment
     display: flex
     align-items: center
+    padding-bottom: 5px
     &-before
       flex: 0 0 auto
       padding-right: 20px
@@ -96,5 +114,8 @@ export default {
         color: white
         border-collor: $--color-danger
         background: $--color-danger
+    &-note
+      color: $black3
+      font-size: 13px
 
 </style>

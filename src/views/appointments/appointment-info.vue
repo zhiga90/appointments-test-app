@@ -1,9 +1,9 @@
 <template lang="pug">
-  .info
+  .appointment-info
     el-form(
       ref="form"
       :model="form"
-      label-width="120px"
+      :label-width="labelWidth"
       :rules="rules"
     )
       el-form-item(label="Date" prop="date" required)
@@ -13,20 +13,16 @@
       el-form-item(label="Note" prop="note")
         el-input(v-model="form.note" type="textarea")
       el-form-item
-        el-button(type="primary" @click="submitForm()") Next
-        el-button(@click="resetForm()") Reset
+        el-button(type="primary" @click="submitForm") Next
+        el-button(@click="resetForm") Reset
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'info',
+  name: 'appointment-info',
 
   data: () => ({
-    form: {
-      title: '',
-      date: Date.now(),
-      note: '',
-    },
     rules: {
       name: [
         { required: true, message: 'Please input appointment name', trigger: 'blur' },
@@ -36,7 +32,23 @@ export default {
         { type: 'date', required: true, message: 'Please pick a date', trigger: 'change' },
       ],
     },
+    labelWidth: 'auto',
   }),
+
+  computed: {
+    ...mapGetters('appointments', ['newAppointment']),
+    form: {
+      get () { return this.newAppointment },
+      set (appointment) { this.commit('appointments/newAppointment', appointment) },
+    },
+  },
+
+  created () {
+    window.addEventListener('resize', this.onResize)
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.onResize)
+  },
 
   methods: {
     async submitForm () {
@@ -47,10 +59,13 @@ export default {
     resetForm () {
       this.$refs.form.resetFields()
     },
+    onResize () {
+      this.labelWidth = this.$isMobile() || window.innerWidth < 600 ? null : '120px'
+    },
   },
 }
 </script>
 
 <style scoped lang="sass">
-// .info
+// .appointment-info
 </style>

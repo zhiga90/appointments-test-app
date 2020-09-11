@@ -5,6 +5,8 @@ import store from './store'
 import { sync } from 'vuex-router-sync'
 import 'normalize.css'
 import '@/plugins/element.js' // Element UI framework
+import VueMobileDetection from 'vue-mobile-detection'
+Vue.use(VueMobileDetection)
 
 Vue.config.productionTip = false
 sync(store, router)
