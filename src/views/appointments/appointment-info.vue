@@ -51,13 +51,14 @@ export default {
   },
 
   methods: {
-    ...mapActions('appointments', ['syncData']),
+    ...mapActions('appointments', ['syncData', 'resetNew']),
     async submitForm () {
       const isValid = await this.$refs.form.validate()
       if (!isValid) return
       this.$router.push('/appointments/create/confirm')
     },
     resetForm () {
+      this.resetNew()
       this.$refs.form.resetFields()
     },
     onResize () {

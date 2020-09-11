@@ -15,8 +15,11 @@ const getters = {
 }
 
 const actions = {
-  addAppointment ({ state, commit, dispatch }) {
+  addAppointment ({ state, dispatch }) {
     state.list.push(state.newAppointment)
+    dispatch('resetNew')
+  },
+  resetNew ({ commit, dispatch }) {
     commit('newAppointment', {
       name: '',
       date: '',
