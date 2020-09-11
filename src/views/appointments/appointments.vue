@@ -18,9 +18,9 @@
 
       .list
         .list-item(v-for="(appointment, index) in list")
-          .appointment
+          .appointment(:class="appointment.isHappen ? 'itHappen' : ''")
             .appointment-before
-              el-checkbox(v-model="appointment.isHappen").appointment-toggle
+              el-checkbox(v-model="appointment.isHappen" @change="syncData").appointment-toggle
             .appointment-body
               .appointment-date {{$date.fromMillis(appointment.date).toLocaleString($date.DATETIME_SHORT)}}
               .appointment-name {{appointment.name}}
@@ -42,7 +42,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('appointments', ['removeAppointment']),
+    ...mapActions('appointments', ['removeAppointment', 'syncData']),
     remove (appointment, index) {
       this.$confirm(
         `${appointment.date} | ${appointment.name}`,
@@ -80,6 +80,8 @@ export default {
     display: flex
     align-items: center
     padding-bottom: 5px
+    &.itHappen
+      text-decoration: line-through
     &-before
       flex: 0 0 auto
       padding-right: 20px
@@ -91,7 +93,7 @@ export default {
       @media (max-width: $to-md)
         flex-wrap: wrap
     &-date
-      flex: 0 0 10
+      flex: 0 0 auto
       padding-right: 20px
       color: $--color-primary
       font-weight: bold
